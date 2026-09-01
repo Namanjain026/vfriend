@@ -37,7 +37,35 @@ class StateMachine {
     ];
     this.playlistIndex = 0;
 
+    this.frameIntervalMs = this.parseIntervalMs(settings.frameInterval);
+
     this.start();
+  }
+
+  parseIntervalMs(val) {
+    if (typeof val === 'number') return val * 1000;
+    if (!val) return 3000;
+    const str = String(val).toLowerCase().trim();
+    if (str === '3s' || str === '3') return 3000;
+    if (str === '5s' || str === '5') return 5000;
+    if (str === '10s' || str === '10') return 10000;
+    if (str === '20s' || str === '20') return 20000;
+    if (str === '30s' || str === '30') return 30000;
+    if (str === '1m' || str === '60') return 60000;
+    if (str === '5m' || str === '300') return 300000;
+    if (str === '10m' || str === '600') return 600000;
+    if (str === '30m' || str === '1800') return 1800000;
+    if (str === '1hr' || str === '3600') return 3600000;
+    const parsed = parseInt(str, 10);
+    return isNaN(parsed) ? 3000 : parsed * 1000;
+  }
+
+  setIntervalOption(val) {
+    const newInterval = this.parseIntervalMs(val);
+    if (newInterval !== this.frameIntervalMs) {
+      this.frameIntervalMs = newInterval;
+      this.scheduleNextTransition();
+    }
   }
 
   start() {
@@ -59,11 +87,11 @@ class StateMachine {
   scheduleNextTransition() {
     if (this.timerId) clearTimeout(this.timerId);
 
-    // Play each picture for 3 seconds (3000 ms) in a loop
+    const delay = this.frameIntervalMs || 3000;
     this.timerId = setTimeout(() => {
       this.playNextPlaylistItem();
       this.scheduleNextTransition();
-    }, 3000);
+    }, delay);
   }
 
   playNextPlaylistItem() {
@@ -79,17 +107,21 @@ class StateMachine {
     this.currentState = newState;
     this.engine.setState(newState, meta);
 
+    const speechDuration = this.frameIntervalMs <= 5000 
+      ? Math.max(2500, this.frameIntervalMs - 500) 
+      : 6000;
+
     if (meta.dialogue) {
-      this.showSpeech(meta.dialogue, 3000);
+      this.showSpeech(meta.dialogue, speechDuration);
     } else if (meta.forceSpeech || Math.random() < 0.35) {
-      this.showSpeechBubbleForState(newState);
+      this.showSpeechBubbleForState(newState, speechDuration);
     }
   }
 
-  showSpeechBubbleForState(stateName) {
+  showSpeechBubbleForState(stateName, durationMs = 3000) {
     const quotes = this.speechMap[stateName] || this.speechMap['IDLE'];
     const text = quotes[Math.floor(Math.random() * quotes.length)];
-    this.showSpeech(text);
+    this.showSpeech(text, durationMs);
   }
 
   showSpeech(text, durationMs = 3000) {

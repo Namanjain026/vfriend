@@ -78,14 +78,18 @@
         #vf-wrapper.size-xlarge { width: 360px !important; height: 360px !important; }
         #vf-wrapper.size-xxlarge { width: 450px !important; height: 450px !important; }
         #vf-wrapper.is-hidden, #vf-wrapper.privacy-active { opacity: 0 !important; transform: scale(0.85) translateY(12px) !important; pointer-events: none !important; }
-        #vf-speech-bubble { position: absolute !important; bottom: 100% !important; margin-bottom: 12px !important; background: rgba(17, 24, 39, 0.88) !important; color: #f3f4f6 !important; backdrop-filter: blur(12px) !important; border: 1.5px solid rgba(255, 255, 255, 0.18) !important; border-radius: 16px !important; padding: 10px 18px !important; font-size: 18px !important; font-weight: 600 !important; white-space: nowrap !important; opacity: 0 !important; transform: translateY(6px) scale(0.9) !important; transition: opacity 0.25s ease, transform 0.25s ease !important; pointer-events: none !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important; }
+        #vf-speech-bubble { position: absolute !important; bottom: 100% !important; margin-bottom: 10px !important; background: rgba(17, 24, 39, 0.92) !important; color: #f3f4f6 !important; backdrop-filter: blur(12px) !important; -webkit-backdrop-filter: blur(12px) !important; border: 1.5px solid rgba(255, 255, 255, 0.2) !important; border-radius: 14px !important; padding: 8px 14px !important; font-size: 14px !important; font-weight: 600 !important; white-space: normal !important; word-wrap: break-word !important; overflow-wrap: break-word !important; text-align: center !important; line-height: 1.35 !important; max-width: 220px !important; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important; opacity: 0 !important; transform: translateY(6px) scale(0.9) !important; transition: opacity 0.25s ease, transform 0.25s ease !important; pointer-events: none !important; box-sizing: border-box !important; }
         #vf-speech-bubble.visible { opacity: 1 !important; transform: translateY(0) scale(1) !important; }
-        #vf-speech-bubble::after { content: "" !important; position: absolute !important; top: 100% !important; left: 50% !important; transform: translateX(-50%) !important; border-width: 8px !important; border-style: solid !important; border-color: rgba(17, 24, 39, 0.88) transparent transparent transparent !important; }
-        #vf-wrapper.size-small #vf-speech-bubble { font-size: 15px !important; padding: 8px 14px !important; margin-bottom: 10px !important; }
-        #vf-wrapper.size-medium #vf-speech-bubble { font-size: 18px !important; padding: 10px 18px !important; margin-bottom: 12px !important; }
-        #vf-wrapper.size-large #vf-speech-bubble { font-size: 22px !important; padding: 12px 22px !important; margin-bottom: 14px !important; border-radius: 18px !important; }
-        #vf-wrapper.size-xlarge #vf-speech-bubble { font-size: 26px !important; padding: 15px 26px !important; margin-bottom: 16px !important; border-radius: 20px !important; }
-        #vf-wrapper.size-xxlarge #vf-speech-bubble { font-size: 30px !important; padding: 18px 30px !important; margin-bottom: 20px !important; border-radius: 24px !important; }
+        #vf-speech-bubble::after { content: "" !important; position: absolute !important; top: 100% !important; border-width: 7px !important; border-style: solid !important; border-color: rgba(17, 24, 39, 0.92) transparent transparent transparent !important; }
+        #vf-wrapper.pos-bottom-right #vf-speech-bubble, #vf-wrapper.pos-top-right #vf-speech-bubble { right: 0 !important; left: auto !important; }
+        #vf-wrapper.pos-bottom-right #vf-speech-bubble::after, #vf-wrapper.pos-top-right #vf-speech-bubble::after { right: 24px !important; left: auto !important; transform: none !important; }
+        #vf-wrapper.pos-bottom-left #vf-speech-bubble, #vf-wrapper.pos-top-left #vf-speech-bubble { left: 0 !important; right: auto !important; }
+        #vf-wrapper.pos-bottom-left #vf-speech-bubble::after, #vf-wrapper.pos-top-left #vf-speech-bubble::after { left: 24px !important; right: auto !important; transform: none !important; }
+        #vf-wrapper.size-small #vf-speech-bubble { font-size: 12px !important; padding: 6px 10px !important; max-width: 170px !important; margin-bottom: 8px !important; }
+        #vf-wrapper.size-medium #vf-speech-bubble { font-size: 13.5px !important; padding: 8px 12px !important; max-width: 210px !important; margin-bottom: 10px !important; }
+        #vf-wrapper.size-large #vf-speech-bubble { font-size: 15px !important; padding: 10px 14px !important; max-width: 250px !important; margin-bottom: 12px !important; border-radius: 16px !important; }
+        #vf-wrapper.size-xlarge #vf-speech-bubble { font-size: 17px !important; padding: 12px 16px !important; max-width: 290px !important; margin-bottom: 14px !important; border-radius: 18px !important; }
+        #vf-wrapper.size-xxlarge #vf-speech-bubble { font-size: 19px !important; padding: 14px 18px !important; max-width: 330px !important; margin-bottom: 16px !important; border-radius: 20px !important; }
         #vf-character-container { width: 100% !important; height: 100% !important; position: relative !important; pointer-events: auto !important; cursor: pointer !important; display: flex !important; align-items: center !important; justify-content: center !important; }
         #vf-canvas { width: 100% !important; height: 100% !important; display: block !important; object-fit: contain !important; filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25)) !important; }
         #vf-character-container:hover #vf-canvas { transform: translateY(-2px) scale(1.02) !important; transition: transform 0.2s ease !important; }
@@ -210,9 +214,12 @@
         setTimeout(() => this.animationEngine.resizeCanvas(), 50);
       }
 
-      // Animation Frequency update
+      // Animation Frequency & Frame Interval update
       if (this.stateMachine) {
         this.stateMachine.setFrequency(this.settings.animationFrequency);
+        if (this.settings.frameInterval) {
+          this.stateMachine.setIntervalOption(this.settings.frameInterval);
+        }
       }
     }
   }

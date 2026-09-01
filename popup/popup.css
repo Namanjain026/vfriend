@@ -244,6 +244,30 @@ input:checked + .slider:before {
   box-shadow: 0 2px 8px var(--accent-purple-glow);
 }
 
+.select-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: var(--text-main, #f3f4f6);
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select-input:focus {
+  border-color: var(--accent-purple, #a855f7);
+  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25);
+}
+
+.select-input option {
+  background: #111827;
+  color: #f3f4f6;
+}
+
 /* Custom Upload Box */
 .custom-upload-box {
   display: flex;

@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const opacityVal = document.getElementById('opacityVal');
   
   const frequencyGroup = document.getElementById('frequencyGroup');
+  const frameIntervalSelect = document.getElementById('frameIntervalSelect');
   const videoAwareToggle = document.getElementById('videoAwareToggle');
   const interactionToggle = document.getElementById('interactionToggle');
   const optionsLink = document.getElementById('optionsLink');
@@ -55,6 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
     opacityVal.textContent = `${Math.round(opVal * 100)}%`;
 
     setActivePill(frequencyGroup, settings.animationFrequency || 'normal');
+    if (frameIntervalSelect) {
+      frameIntervalSelect.value = settings.frameInterval || '3s';
+    }
     videoAwareToggle.checked = settings.videoAwarenessEnabled !== false;
     interactionToggle.checked = settings.interactionEnabled !== false;
 
@@ -157,6 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
       chrome.storage.local.set({ animationFrequency: val });
     }
   });
+
+  if (frameIntervalSelect) {
+    frameIntervalSelect.addEventListener('change', (e) => {
+      chrome.storage.local.set({ frameInterval: e.target.value });
+    });
+  }
 
   // Position Grid
   positionGroup.addEventListener('click', (e) => {
