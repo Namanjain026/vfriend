@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Friend — Options & Documentation</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="header">
+      <div class="brand">
+        <span class="logo">✨</span>
+        <div>
+          <h1>Virtual Friend Settings</h1>
+          <p>Configure advanced companion preferences and asset customization</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <!-- General Preferences Card -->
+      <section class="card">
+        <h2>General Preferences</h2>
+        
+        <div class="field-row">
+          <div class="field-label">
+            <strong>Default Corner Position</strong>
+            <span>Choose default placement when launching tabs</span>
+          </div>
+          <select id="defaultPosition" class="select-input">
+            <option value="bottom-right">Bottom Right (Default)</option>
+            <option value="bottom-left">Bottom Left</option>
+            <option value="top-right">Top Right</option>
+            <option value="top-left">Top Left</option>
+          </select>
+        </div>
+
+        <div class="field-row">
+          <div class="field-label">
+            <strong>Companion Size Scale</strong>
+            <span>Set default size overlay for new pages</span>
+          </div>
+          <select id="defaultSize" class="select-input">
+            <option value="small">Small (90px)</option>
+            <option value="medium">Medium (130px)</option>
+            <option value="large">Large (180px)</option>
+          </select>
+        </div>
+
+        <div class="field-row">
+          <div class="field-label">
+            <strong>Reset to Defaults</strong>
+            <span>Restore original factory extension settings</span>
+          </div>
+          <button type="button" id="resetBtn" class="btn btn-secondary">Reset Settings</button>
+        </div>
+      </section>
+
+      <!-- Asset Customization Card -->
+      <section class="card">
+        <h2>Custom Character Art Packs</h2>
+        <p class="desc-text">
+          Virtual Friend uses procedural 2D vector rendering by default. You can also place custom WebP/PNG frame sequences inside the extension directory under <code>characters/default/</code>.
+        </p>
+        <div class="state-table">
+          <div class="state-row">
+            <span class="state-name">idle</span>
+            <span class="state-files">idle_001.webp ... idle_012.webp</span>
+          </div>
+          <div class="state-row">
+            <span class="state-name">sitting</span>
+            <span class="state-files">sitting_001.webp ... sitting_010.webp</span>
+          </div>
+          <div class="state-row">
+            <span class="state-name">eating</span>
+            <span class="state-files">eating_001.webp ... eating_015.webp</span>
+          </div>
+          <div class="state-row">
+            <span class="state-name">sleeping</span>
+            <span class="state-files">sleeping_001.webp ... sleeping_008.webp</span>
+          </div>
+          <div class="state-row">
+            <span class="state-name">shower</span>
+            <span class="state-files">shower_001.webp ... shower_020.webp</span>
+          </div>
+          <div class="state-row">
+            <span class="state-name">watching</span>
+            <span class="state-files">watching_001.webp ... watching_010.webp</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shortcuts Card -->
+      <section class="card">
+        <h2>Keyboard Shortcuts</h2>
+        <div class="field-row">
+          <div class="field-label">
+            <strong>Toggle Privacy Focus Mode</strong>
+            <span>Instantly hide/show the companion overlay</span>
+          </div>
+          <span class="key-badge">Ctrl + Shift + P</span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

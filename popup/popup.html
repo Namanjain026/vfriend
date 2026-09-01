@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Friend Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="avatar-icon">🌸</div>
+        <div class="brand-text">
+          <h1>Virtual Friend</h1>
+          <span class="status-badge" id="statusBadge">Active</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Toggles Section -->
+    <section class="card">
+      <div class="control-row">
+        <div class="control-info">
+          <label for="enabledToggle" class="control-title">Enable Companion</label>
+          <span class="control-desc">Show virtual friend on web pages</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="enabledToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="control-row">
+        <div class="control-info">
+          <label for="privacyToggle" class="control-title">Privacy Focus Mode</label>
+          <span class="control-desc">Hide instantly (<kbd id="shortcutKbd">Ctrl+Shift+P</kbd>)</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="privacyToggle">
+          <span class="slider privacy"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Character & Avatar Upload Section -->
+    <section class="card">
+      <h2 class="card-title">Character & Avatar</h2>
+
+      <!-- Style Mode Selector -->
+      <div class="setting-group">
+        <label class="setting-label">Avatar Style</label>
+        <div class="pill-group" id="avatarTypeGroup">
+          <button type="button" class="pill-btn active" data-value="anime_image">🌸 Anime Girl</button>
+          <button type="button" class="pill-btn" data-value="procedural">✨ Canvas</button>
+          <button type="button" class="pill-btn" data-value="custom_image">📁 Custom</button>
+        </div>
+      </div>
+
+      <!-- Custom Upload Controls -->
+      <div class="custom-upload-box" id="customUploadBox">
+        <div class="upload-actions">
+          <label for="customAvatarInput" class="upload-btn">
+            <span>📷 Upload Custom Character</span>
+          </label>
+          <input type="file" id="customAvatarInput" accept="image/*">
+          <button type="button" class="reset-btn" id="resetAvatarBtn" title="Reset Image">✕ Clear</button>
+        </div>
+        <div class="upload-preview-container" id="uploadPreviewContainer" style="display: none;">
+          <img id="uploadPreviewImg" src="" alt="Character Preview">
+          <span class="preview-text">Custom Image Loaded</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appearance Section -->
+    <section class="card">
+      <h2 class="card-title">Appearance</h2>
+      
+      <!-- Size Selector -->
+      <div class="setting-group">
+        <label class="setting-label">Companion Size</label>
+        <div class="pill-group" id="sizeGroup">
+          <button type="button" class="pill-btn" data-value="small">Small</button>
+          <button type="button" class="pill-btn active" data-value="medium">Medium</button>
+          <button type="button" class="pill-btn" data-value="large">Large</button>
+        </div>
+      </div>
+
+      <!-- Corner Position Selector -->
+      <div class="setting-group">
+        <label class="setting-label">Screen Position</label>
+        <div class="corner-grid" id="positionGroup">
+          <button type="button" class="corner-btn" data-value="top-left" title="Top Left">↖ Top Left</button>
+          <button type="button" class="corner-btn" data-value="top-right" title="Top Right">↗ Top Right</button>
+          <button type="button" class="corner-btn" data-value="bottom-left" title="Bottom Left">↙ Bottom Left</button>
+          <button type="button" class="corner-btn active" data-value="bottom-right" title="Bottom Right">↘ Bottom Right</button>
+        </div>
+      </div>
+
+      <!-- Opacity Slider -->
+      <div class="setting-group">
+        <div class="label-with-value">
+          <label for="opacityRange" class="setting-label">Opacity</label>
+          <span class="value-badge" id="opacityVal">100%</span>
+        </div>
+        <input type="range" id="opacityRange" min="0.2" max="1.0" step="0.05" value="1.0" class="range-slider">
+      </div>
+    </section>
+
+    <!-- Behavior Section -->
+    <section class="card">
+      <h2 class="card-title">Behavior & Context</h2>
+
+      <!-- Animation Frequency -->
+      <div class="setting-group">
+        <label class="setting-label">Activity Pace</label>
+        <div class="pill-group" id="frequencyGroup">
+          <button type="button" class="pill-btn" data-value="low">Calm</button>
+          <button type="button" class="pill-btn active" data-value="normal">Normal</button>
+          <button type="button" class="pill-btn" data-value="high">Lively</button>
+        </div>
+      </div>
+
+      <!-- Video Awareness -->
+      <div class="control-row">
+        <div class="control-info">
+          <label for="videoAwareToggle" class="control-title">Video Reaction</label>
+          <span class="control-desc">Reacts when watching videos / YouTube</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="videoAwareToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Click Interaction -->
+      <div class="control-row">
+        <div class="control-info">
+          <label for="interactionToggle" class="control-title">Click & Hover Reactions</label>
+          <span class="control-desc">Respond when clicked or hovered</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="interactionToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>Virtual Friend v1.0.0</span>
+      <a href="#" id="optionsLink">Advanced Options →</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

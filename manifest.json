@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Virtual Friend — Desktop Companion",
+  "version": "1.0.0",
+  "description": "A lightweight, autonomous virtual companion that lives on your browser pages.",
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "content/site-detector.js",
+        "content/animation-engine.js",
+        "content/state-machine.js",
+        "content/friend.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content/friend.css",
+        "characters/*",
+        "characters/**/*",
+        "icons/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "commands": {
+    "toggle-privacy-mode": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P"
+      },
+      "description": "Toggle Virtual Friend Privacy Focus Mode"
+    }
+  }
+}
