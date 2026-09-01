@@ -62,10 +62,8 @@ class StateMachine {
 
   setIntervalOption(val) {
     const newInterval = this.parseIntervalMs(val);
-    if (newInterval !== this.frameIntervalMs) {
-      this.frameIntervalMs = newInterval;
-      this.scheduleNextTransition();
-    }
+    this.frameIntervalMs = newInterval;
+    this.scheduleNextTransition();
   }
 
   start() {
@@ -107,9 +105,8 @@ class StateMachine {
     this.currentState = newState;
     this.engine.setState(newState, meta);
 
-    const speechDuration = this.frameIntervalMs <= 5000 
-      ? Math.max(2500, this.frameIntervalMs - 500) 
-      : 6000;
+    // Keep speech bubble visible for the full duration of the frame interval
+    const speechDuration = Math.max(2500, this.frameIntervalMs - 400);
 
     if (meta.dialogue) {
       this.showSpeech(meta.dialogue, speechDuration);
@@ -118,16 +115,26 @@ class StateMachine {
     }
   }
 
-  showSpeechBubbleForState(stateName, durationMs = 3000) {
+  showSpeechBubbleForState(stateName, durationMs) {
+    const dur = durationMs || Math.max(2500, this.frameIntervalMs - 400);
     const quotes = this.speechMap[stateName] || this.speechMap['IDLE'];
     const text = quotes[Math.floor(Math.random() * quotes.length)];
-    this.showSpeech(text, durationMs);
+    this.showSpeech(text, dur);
   }
 
   showSpeech(text, durationMs = 3000) {
     if (!this.speechBubble) return;
 
-    this.speechBubble.textContent = text;
+    let formattedText = text;
+    if (text && typeof text === 'string') {
+      const words = text.trim().split(/\s+/);
+      if (words.length > 4) {
+        const mid = Math.ceil(words.length / 2);
+        formattedText = words.slice(0, mid).join(' ') + '\n' + words.slice(mid).join(' ');
+      }
+    }
+
+    this.speechBubble.textContent = formattedText;
     this.speechBubble.classList.add('visible');
 
     if (this.speechTimerId) clearTimeout(this.speechTimerId);
