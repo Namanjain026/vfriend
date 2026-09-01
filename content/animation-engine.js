@@ -78,21 +78,9 @@ class AnimationEngine {
       rotation = 0
     } = options;
 
-    ctx.save();
-    ctx.translate(50, 52 + bounceY);
-    ctx.scale(scaleX, 1);
-    if (rotation) ctx.rotate(rotation);
-
-    // 1. Ground Shadow
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
-    ctx.beginPath();
-    ctx.ellipse(0, 38 - bounceY * 0.5, 26, 6, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // 2. Draw Image
     const imgW = frameImg.naturalWidth || 100;
     const imgH = frameImg.naturalHeight || 100;
-    const maxDim = 72;
+    const maxDim = 88;
     let renderW = maxDim;
     let renderH = maxDim;
 
@@ -102,6 +90,21 @@ class AnimationEngine {
       renderW = (imgW / imgH) * maxDim;
     }
 
+    const topY = 6;
+    const centerY = topY + renderH / 2;
+
+    ctx.save();
+    ctx.translate(50, centerY + bounceY);
+    ctx.scale(scaleX, 1);
+    if (rotation) ctx.rotate(rotation);
+
+    // 1. Ground Shadow
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
+    ctx.beginPath();
+    ctx.ellipse(0, (renderH / 2) + 2 - bounceY * 0.5, Math.min(renderW * 0.45, 30), 5, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 2. Draw Image
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(frameImg, -renderW / 2, -renderH / 2, renderW, renderH);
@@ -146,21 +149,9 @@ class AnimationEngine {
       rotation = 0
     } = options;
 
-    ctx.save();
-    ctx.translate(50, 52 + bounceY);
-    ctx.scale(scaleX, 1);
-    if (rotation) ctx.rotate(rotation);
-
-    // 1. Ground Shadow
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
-    ctx.beginPath();
-    ctx.ellipse(0, 38 - bounceY * 0.5, 26, 6, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // 2. Draw Keyframe Image
     const imgW = frameImg.naturalWidth || 100;
     const imgH = frameImg.naturalHeight || 100;
-    const maxDim = 72;
+    const maxDim = 88;
     let renderW = maxDim;
     let renderH = maxDim;
 
@@ -170,6 +161,21 @@ class AnimationEngine {
       renderW = (imgW / imgH) * maxDim;
     }
 
+    const topY = 6;
+    const centerY = topY + renderH / 2;
+
+    ctx.save();
+    ctx.translate(50, centerY + bounceY);
+    ctx.scale(scaleX, 1);
+    if (rotation) ctx.rotate(rotation);
+
+    // 1. Ground Shadow
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
+    ctx.beginPath();
+    ctx.ellipse(0, (renderH / 2) + 2 - bounceY * 0.5, Math.min(renderW * 0.45, 30), 5, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 2. Draw Keyframe Image
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(frameImg, -renderW / 2, -renderH / 2, renderW, renderH);
@@ -338,21 +344,9 @@ class AnimationEngine {
       return;
     }
 
-    ctx.save();
-    ctx.translate(50, 52 + bounceY);
-    ctx.scale(scaleX, 1);
-    if (rotation) ctx.rotate(rotation);
-
-    // 1. Ground Shadow
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
-    ctx.beginPath();
-    ctx.ellipse(0, 38 - bounceY * 0.5, 26, 6, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // 2. Draw Image Asset
     const imgW = this.characterImg.naturalWidth || 100;
     const imgH = this.characterImg.naturalHeight || 100;
-    const maxDim = 72;
+    const maxDim = 88;
     let renderW = maxDim;
     let renderH = maxDim;
 
@@ -362,6 +356,21 @@ class AnimationEngine {
       renderW = (imgW / imgH) * maxDim;
     }
 
+    const topY = 6;
+    const centerY = topY + renderH / 2;
+
+    ctx.save();
+    ctx.translate(50, centerY + bounceY);
+    ctx.scale(scaleX, 1);
+    if (rotation) ctx.rotate(rotation);
+
+    // 1. Ground Shadow
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
+    ctx.beginPath();
+    ctx.ellipse(0, (renderH / 2) + 2 - bounceY * 0.5, Math.min(renderW * 0.45, 30), 5, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 2. Draw Image Asset
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(this.characterImg, -renderW / 2, -renderH / 2, renderW, renderH);
