@@ -72,13 +72,20 @@
         #vf-wrapper.pos-bottom-left { bottom: 24px !important; left: 24px !important; }
         #vf-wrapper.pos-top-right { top: 24px !important; right: 24px !important; }
         #vf-wrapper.pos-top-left { top: 24px !important; left: 24px !important; }
-        #vf-wrapper.size-small { width: 90px !important; height: 90px !important; }
-        #vf-wrapper.size-medium { width: 130px !important; height: 130px !important; }
-        #vf-wrapper.size-large { width: 180px !important; height: 180px !important; }
+        #vf-wrapper.size-small { width: 135px !important; height: 135px !important; }
+        #vf-wrapper.size-medium { width: 195px !important; height: 195px !important; }
+        #vf-wrapper.size-large { width: 270px !important; height: 270px !important; }
+        #vf-wrapper.size-xlarge { width: 360px !important; height: 360px !important; }
+        #vf-wrapper.size-xxlarge { width: 450px !important; height: 450px !important; }
         #vf-wrapper.is-hidden, #vf-wrapper.privacy-active { opacity: 0 !important; transform: scale(0.85) translateY(12px) !important; pointer-events: none !important; }
-        #vf-speech-bubble { position: absolute !important; bottom: 100% !important; margin-bottom: 8px !important; background: rgba(17, 24, 39, 0.85) !important; color: #f3f4f6 !important; backdrop-filter: blur(12px) !important; border: 1px solid rgba(255, 255, 255, 0.15) !important; border-radius: 12px !important; padding: 6px 12px !important; font-size: 12px !important; font-weight: 500 !important; white-space: nowrap !important; opacity: 0 !important; transform: translateY(6px) scale(0.9) !important; transition: opacity 0.25s ease, transform 0.25s ease !important; pointer-events: none !important; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important; }
+        #vf-speech-bubble { position: absolute !important; bottom: 100% !important; margin-bottom: 12px !important; background: rgba(17, 24, 39, 0.88) !important; color: #f3f4f6 !important; backdrop-filter: blur(12px) !important; border: 1.5px solid rgba(255, 255, 255, 0.18) !important; border-radius: 16px !important; padding: 10px 18px !important; font-size: 18px !important; font-weight: 600 !important; white-space: nowrap !important; opacity: 0 !important; transform: translateY(6px) scale(0.9) !important; transition: opacity 0.25s ease, transform 0.25s ease !important; pointer-events: none !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important; }
         #vf-speech-bubble.visible { opacity: 1 !important; transform: translateY(0) scale(1) !important; }
-        #vf-speech-bubble::after { content: "" !important; position: absolute !important; top: 100% !important; left: 50% !important; transform: translateX(-50%) !important; border-width: 5px !important; border-style: solid !important; border-color: rgba(17, 24, 39, 0.85) transparent transparent transparent !important; }
+        #vf-speech-bubble::after { content: "" !important; position: absolute !important; top: 100% !important; left: 50% !important; transform: translateX(-50%) !important; border-width: 8px !important; border-style: solid !important; border-color: rgba(17, 24, 39, 0.88) transparent transparent transparent !important; }
+        #vf-wrapper.size-small #vf-speech-bubble { font-size: 15px !important; padding: 8px 14px !important; margin-bottom: 10px !important; }
+        #vf-wrapper.size-medium #vf-speech-bubble { font-size: 18px !important; padding: 10px 18px !important; margin-bottom: 12px !important; }
+        #vf-wrapper.size-large #vf-speech-bubble { font-size: 22px !important; padding: 12px 22px !important; margin-bottom: 14px !important; border-radius: 18px !important; }
+        #vf-wrapper.size-xlarge #vf-speech-bubble { font-size: 26px !important; padding: 15px 26px !important; margin-bottom: 16px !important; border-radius: 20px !important; }
+        #vf-wrapper.size-xxlarge #vf-speech-bubble { font-size: 30px !important; padding: 18px 30px !important; margin-bottom: 20px !important; border-radius: 24px !important; }
         #vf-character-container { width: 100% !important; height: 100% !important; position: relative !important; pointer-events: auto !important; cursor: pointer !important; display: flex !important; align-items: center !important; justify-content: center !important; }
         #vf-canvas { width: 100% !important; height: 100% !important; display: block !important; object-fit: contain !important; filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25)) !important; }
         #vf-character-container:hover #vf-canvas { transform: translateY(-2px) scale(1.02) !important; transition: transform 0.2s ease !important; }

@@ -216,6 +216,7 @@ input:checked + .slider:before {
 
 .pill-group {
   display: flex;
+  flex-wrap: wrap;
   background: rgba(0, 0, 0, 0.2);
   padding: 3px;
   border-radius: 10px;
@@ -223,15 +224,17 @@ input:checked + .slider:before {
 }
 
 .pill-btn {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 48px;
   background: transparent;
   border: none;
   color: var(--text-muted);
-  padding: 6px 0;
-  font-size: 11px;
+  padding: 6px 4px;
+  font-size: 10.5px;
   font-weight: 600;
   border-radius: 7px;
   cursor: pointer;
+  text-align: center;
   transition: all 0.2s ease;
 }
 
